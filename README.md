@@ -7,7 +7,7 @@
 #### Zhu-Hong You
 ------
 ### Folders
-* `data` contains the sample data.
+* `data` contains the biological network data used in the paper.
 * `python` contains the python scripts to generate the tensor data and input files for Markov Clustering algorithm (MCL).
 * `julia` contains the julia scripts to generate the transition matrix of the first-order Markov chain that approximates the higher-order Markov chain.
 * `java` contains the java files to merge the clusters generated from different motifs.
