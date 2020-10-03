@@ -1,15 +1,22 @@
 import datetime as dt
 import numpy as np
+import utility
 
 
-def run(graph_file, output_file):
+def run(graph_file):
     print("Start generating tensor at %s" % dt.datetime.now())
+
+    output_file = graph_file + "-motif"
+    node_map = utility.read_node_map_from_graph(graph_file)
 
     b = []
     for line in open(graph_file, 'r'):
-        tmp = line.split()
-        tmp = [int(i) for i in tmp]
-        b.append(tmp)
+        items = line.split()
+        if items[0] == 'e':
+            id_1 = node_map[items[1].strip()]
+            id_2 = node_map[items[2].strip()]
+            tmp = [id_1, id_2]
+            b.append(tmp)
 
     b_len = len(b)
     c = []
@@ -21,7 +28,8 @@ def run(graph_file, output_file):
                 t01 = list(set(t0) & set(t1))
                 t02 = sorted(list(set(t0) ^ set(t1)))
                 t02.append(t01[0])
-                c.append(t02)
+                if len(t02) == 3:
+                    c.append(t02)
 
     result = []
     c_len = len(c)
@@ -45,4 +53,6 @@ def run(graph_file, output_file):
         output.write(line + "\n")
     output.close()
     print("Saved to file [%s] at %s" % (output_file, dt.datetime.now()))
+
+    return output_file
 

@@ -1,5 +1,6 @@
 import datetime as dt
 import numpy as np
+import utility
 
 INPUT_DATA_DELIMITER = "\t"
 OUTPUT_DATA_DELIMITER = " "
@@ -113,23 +114,12 @@ def __save(save_file, data):
     file.close()
 
 
-def __read_node_map_from_graph(filename):
-    node_map = {}
-    index = 0
-
-    f = open(filename)
-    for line in f:
-        items = line.rstrip('\n').split(INPUT_DATA_DELIMITER)
-        if items[0] == 'v':
-            node_map[items[1].strip()] = index
-            index += 1
-
-    return node_map
-
-
-def run(graph_file, output_file):
+def run(graph_file):
     print("Start generating tensor at %s" % dt.datetime.now())
-    input_data = __gen_adjacency_matrix(graph_file, __read_node_map_from_graph(graph_file))
+    output_file = graph_file + "-motif"
+    input_data = __gen_adjacency_matrix(graph_file, utility.read_node_map_from_graph(graph_file))
 
     __gen_tensor_data(input_data, output_file)
     print("Saved to file [%s] at %s" % (output_file, dt.datetime.now()))
+
+    return output_file

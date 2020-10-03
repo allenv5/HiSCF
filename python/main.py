@@ -2,6 +2,8 @@ import sys
 import getopt
 import TriangleMotifGenerator as triMG
 import RectangleMotifGenerator as recMG
+import TriangleTensorDataGenerator as triTDG
+import RectangleTensorDataGenerator as recTDG
 
 
 if __name__ == "__main__":
@@ -28,8 +30,10 @@ if __name__ == "__main__":
 
     motif = int(motif)
     if motif == 1:
-        triMG.run(input_file, output_file)
+        motif_file = triMG.run(input_file)
+        triTDG.run(motif_file, output_file)
     elif motif == 2:
-        recMG.run(input_file, output_file)
+        motif_file = recMG.run(input_file)
+        recTDG.run(motif_file, output_file)
     else:
         print('error')
