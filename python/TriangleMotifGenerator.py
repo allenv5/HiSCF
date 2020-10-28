@@ -8,12 +8,7 @@ STAT_STRING_DELIMITER = ","
 
 
 def __append_matched_top_records(i, j, k):
-    save_data = "{0}\t{1}\t{2}\t{3}\n".format(i, j, k, 1)
-    save_data += "{0}\t{1}\t{2}\t{3}\n".format(i, k, j, 1)
-    save_data += "{0}\t{1}\t{2}\t{3}\n".format(j, i, k, 1)
-    save_data += "{0}\t{1}\t{2}\t{3}\n".format(j, k, i, 1)
-    save_data += "{0}\t{1}\t{2}\t{3}\n".format(k, j, i, 1)
-    save_data += "{0}\t{1}\t{2}\t{3}\n".format(k, i, j, 1)
+    save_data = "{0}\t{1}\t{2}\n".format(i, j, k)
     return save_data
 
 

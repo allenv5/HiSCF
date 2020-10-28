@@ -7,7 +7,7 @@ def run(input_file, output_file):
     next_id = 1
 
     for i in range(0, len(tensor)):
-        for j in range(0, len(tensor[i]) - 1):
+        for j in range(0, len(tensor[i])):
             if id_dic.get(tensor[i][j]) is None:
                 id_dic[tensor[i][j]] = next_id
                 next_id = next_id + 1
@@ -24,7 +24,7 @@ def run(input_file, output_file):
     content = ''
     for i in range(0, len(tensor)):
         mapped_tensor = []
-        for j in range(0, len(tensor[i]) - 1):
+        for j in range(0, len(tensor[i])):
             mapped_tensor.append(id_dic.get(tensor[i][j]))
         max_index = mapped_tensor.index(max(mapped_tensor))
 
